@@ -3,6 +3,7 @@
 #'"Pulls the data from the DDSP API for the required sample points acquired
 #'from the sample_points function"
 #'@importFrom utils read.csv
+#'@importFrom readr read_csv
 #'@param site_notation Either a single site can be submitted ("site_notation1"),
 #'a number or specifc sites (c(site_notation1,site_notation2))
 #'@param df if the sample point function is saved to a dataframe the column
@@ -25,6 +26,8 @@ fetch_sample_res <- function(df, site_notation, dets, start_date, end_date, limi
   url <- "https://environment.data.gov.uk/water-quality/data/measurement.csv?"
 
   df <- if(missing(df)){
+
+    NULL
 
   } else {
 
@@ -84,27 +87,26 @@ fetch_sample_res <- function(df, site_notation, dets, start_date, end_date, limi
 
   dat <- data.frame()
 
-  if(is.character(site_notation) && missing(df)){
+  if(is.character(site_notation) && is.null(df)){
 
     nn_queries <- list(c(site_notation,dets,start_date,end_date,limit))
 
-    dat <- rbind(dat,read.csv(paste0(url,paste(nn_queries[[1]],collapse = "&"))))
+    dat <- rbind(dat,readr::read_csv(paste0(url,paste(nn_queries[[1]],collapse = "&"))))
 
-  } else if(is.null(site_notation) && missing(df)==FALSE){
+  } else if (is.null(site_notation) && is.null(df)==FALSE){
 
     for(i in 1:length(df$notation)){
 
       nn_queries <- list(c(dets,start_date,end_date,limit))
 
-      dat <- rbind(dat,utils::read.csv(paste0(url,"samplingPoint=",df$notation[1],"&",paste(nn_queries[[1]],collapse = "&"))))
+      dat <- rbind(dat,readr::read_csv(paste0(url,"samplingPoint=",df$notation[i],"&",paste(nn_queries[[1]],collapse = "&"))))
 
     }
 
   }
 
-  else{
-
-
+  else {
+    # nothing
   }
 
   dat <- dat[,-c(1:2)]
