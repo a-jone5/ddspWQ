@@ -24,6 +24,17 @@ fetch_sample_res <- function(df, site_notation, dets, start_date, end_date, limi
 
   url <- "https://environment.data.gov.uk/water-quality/data/measurement.csv?"
 
+  df <- if(missing(df)){
+
+    NULL
+
+  } else {
+
+    return(df)
+
+  }
+
+
   start_date <- if(missing(start_date)){
 
     NULL
