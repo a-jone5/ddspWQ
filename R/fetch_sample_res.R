@@ -26,14 +26,11 @@ fetch_sample_res <- function(df, site_notation, dets, start_date, end_date, limi
 
   df <- if(missing(df)){
 
-    NULL
-
   } else {
 
-    return(df)
+    df
 
   }
-
 
   start_date <- if(missing(start_date)){
 
@@ -99,7 +96,7 @@ fetch_sample_res <- function(df, site_notation, dets, start_date, end_date, limi
 
       nn_queries <- list(c(dets,start_date,end_date,limit))
 
-      dat <- rbind(dat,utils::read.csv(paste0(url,"samplingPoint=",df$notation[i],"&",paste(nn_queries[[1]],collapse = "&"))))
+      dat <- rbind(dat,utils::read.csv(paste0(url,"samplingPoint=",df$notation[1],"&",paste(nn_queries[[1]],collapse = "&"))))
 
     }
 
