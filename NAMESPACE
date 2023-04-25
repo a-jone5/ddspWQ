@@ -3,5 +3,6 @@
 export(fetch_sample_points)
 export(fetch_sample_res)
 export(helper_dets)
+export(helper_smpt_type)
 importFrom(readr,read_csv)
 importFrom(utils,read.csv)
