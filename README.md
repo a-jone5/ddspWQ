@@ -27,6 +27,8 @@ Functions in the `{ddspWQ}` package are currently split into either
 
   - `helper_dets` helps you find the codes for the determinands you are
     interested in
+  - `helper_smpt_type` helps you find the codes for the different
+    sampling point types
 
 - `fetch` functions are designed to pull data via the ddspwqa API
 
