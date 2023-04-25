@@ -53,7 +53,7 @@ head(zinc_dets)
 
 we can store the results in a dataframe for ease of scrolling around. We
 decide we are interested in looking at dissolved Zn with the “det code”
-*3408*.
+**3408**.
 
 We now decide we want to look at some old abandoned mining areas, to
 have a look at dissolved zinc concentrations. To do that we are going to
@@ -79,6 +79,13 @@ like so
 
 ``` r
 multiple_sites <- fetch_sample_res(df = sites_of_interest, dets = "3408")
+```
+
+we can also check for another determinand, lets say we are also
+interested in copper which has the det code **6450**
+
+``` r
+multiple_sites_and_dets <- fetch_sample_res(df = sites_of_interest, dets = c("3408","6450"))
 ```
 
 Now we have all the data for use in further analysis.

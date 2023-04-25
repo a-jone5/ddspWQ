@@ -41,7 +41,7 @@ Lets say we are interested in finding out some water quality data looking at zin
 
 We can call the following to see what zinc dets the ddspwqa has data for
 
-```{r, echo = TRUE, results = 'hide'}
+```{r echo=TRUE,results='hide',message=FALSE}
 library(ddspWQ)
 
 zinc_dets <- helper_dets("zinc")
@@ -51,14 +51,14 @@ head(zinc_dets)
 ```
 
 we can store the results in a dataframe for ease of scrolling around. We decide we are interested in looking at 
-dissolved Zn with the "det code" *3408*.
+dissolved Zn with the "det code" **3408**.
 
 We now decide we want to look at some old abandoned mining areas, to have a look at dissolved
 zinc concentrations. To do that we are going to need to know what sites 
 we need to be looking at, identified by their site notation. Providing we know an 
 easting and northing of a point, and a rough kilometer value to search around the point we can call
 
-```{r, echo = TRUE, results = 'hide', message=FALSE}
+```{r echo=TRUE,results='hide',message=FALSE}
 
 sites_of_interest <- fetch_sample_points(easting="402628", northing="463188", distance = 2)
 
@@ -68,7 +68,7 @@ Now we know the identifiers for where we want to look, we want to find out what 
 samples have been taken in the area. There are two options for this, we can either find an 
 individual site in our `sites_of_interest` data frame and call
 
-```{r, echo = TRUE, results = 'hide', message=FALSE}
+```{r echo=TRUE,results='hide',message=FALSE}
 
 single_site <- fetch_sample_res(site_notation = "NE-49705086", dets = "3408")
 
@@ -76,12 +76,20 @@ single_site <- fetch_sample_res(site_notation = "NE-49705086", dets = "3408")
 
 or we can simply pass our `sites_of_interest`data frame to the function like so  
 
-```{r, echo = TRUE, results = 'hide', message=FALSE}
+```{r echo=TRUE,results='hide',message=FALSE}
 
 multiple_sites <- fetch_sample_res(df = sites_of_interest, dets = "3408")
 
 ```
 
+we can also check for another determinand, lets say we are also interested in copper
+which has the det code **6450**
+
+```{r echo=TRUE,results='hide',message=FALSE}
+
+multiple_sites_and_dets <- fetch_sample_res(df = sites_of_interest, dets = c("3408","6450"))
+
+```
 
 Now we have all the data for use in further analysis.
 
