@@ -4,7 +4,16 @@
 \alias{fetch_sample_points}
 \title{"fetch: sample points"}
 \usage{
-fetch_sample_points(status, type, area, easting, northing, distance, limit)
+fetch_sample_points(
+  status,
+  type,
+  area,
+  easting,
+  northing,
+  distance,
+  smpt_type,
+  limit
+)
 }
 \arguments{
 \item{status}{can be "open" for sample points at which samples are currently
@@ -22,6 +31,8 @@ being taken or not declared.}
 \item{distance}{a distance to search for sample points from the point declared
 in the easting and northing parameters}
 
+\item{smpt_type}{the notation of the sampling point type}
+
 \item{limit}{limit if you want to run the query quickly you can set a numeric limit}
 }
 \value{
@@ -31,11 +42,12 @@ returns the output of the API query based on the user search
 "Pulls the sample point data from the DDSP API"
 }
 \examples{
-fetch_sample_points(easting="527137", northing="335549", distance = 5)
+fetch_sample_points(easting="527137", northing="335549", smpt_type="F6", distance=5)
 
 
 
 # will return a dataframe containing all sample points that are within approximately
-# 5km of the point decalred in the easting and northing parameters
+# 5km of the point declared in the easting and northing parameters, where the sample
+# point type is "F6" (FRESHWATER - RIVERS)
 
 }

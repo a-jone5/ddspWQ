@@ -11,18 +11,20 @@
 #'@param northing the northing of a point of interest, used with easting and distance
 #'@param distance a distance to search for sample points from the point declared
 #'in the easting and northing parameters
+#'@param smpt_type the notation of the sampling point type
 #'@param limit limit if you want to run the query quickly you can set a numeric limit
 #'@return returns the output of the API query based on the user search
 #'@examples
-#'fetch_sample_points(easting="527137", northing="335549", distance = 5)
+#'fetch_sample_points(easting="527137", northing="335549", smpt_type="F6", distance=5)
 #'
 #'
 #'
 #'# will return a dataframe containing all sample points that are within approximately
-#'# 5km of the point decalred in the easting and northing parameters
+#'# 5km of the point declared in the easting and northing parameters, where the sample
+#'# point type is "F6" (FRESHWATER - RIVERS)
 #'
 #'@export
-fetch_sample_points <- function(status,type,area,easting,northing,distance,limit){
+fetch_sample_points <- function(status,type,area,easting,northing,distance,smpt_type,limit){
 
   url <- "https://environment.data.gov.uk/water-quality/id/sampling-point.csv?"
 
@@ -86,6 +88,16 @@ fetch_sample_points <- function(status,type,area,easting,northing,distance,limit
 
   }
 
+  smpt_type <- if(missing(smpt_type)){
+
+    NULL
+
+  } else {
+
+    smpt_type <- paste0("samplingPointType=",paste(smpt_type,collapse = "&samplingPointType="))
+
+  }
+
   limit <- if(missing(limit)){
 
     paste0("_limit=9999999")
@@ -96,10 +108,11 @@ fetch_sample_points <- function(status,type,area,easting,northing,distance,limit
 
   }
 
-  nn_queries <- list(c(status,type,area,easting,northing,distance,limit))
+  nn_queries <- list(c(status,type,area,easting,northing,distance,smpt_type,limit))
 
   dat <- utils::read.csv(paste0(url,paste(nn_queries[[1]],collapse = "&")))
 
   return(dat)
 
 }
+
