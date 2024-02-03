@@ -54,7 +54,7 @@ fetch_sample_points <- function(status,type,area,easting,northing,distance,smpt_
 
   } else {
 
-    paste0("area=",area)
+    paste0("area=",paste(area,collapse = "&area="))
 
   }
 
