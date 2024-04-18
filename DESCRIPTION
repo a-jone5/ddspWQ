@@ -3,7 +3,7 @@ Type: Package
 Title: Access to the defra Water Quality Archive
 Version: 0.1.0
 Author: jones a
-Maintainer: a.jones.hull@gmail.com
+Maintainer: ash jones <a.jones.hull@gmail.com>
 Description: Access to the defra Water Quality Archive
 Imports:
     readr
