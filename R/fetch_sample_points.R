@@ -80,7 +80,7 @@ fetch_sample_points <- function(status,type,area,easting,northing,distance,smpt_
 
   distance <- if(missing(distance)){
 
-    paste0("dist=10")
+    NULL
 
   } else {
 
