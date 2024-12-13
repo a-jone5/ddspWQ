@@ -41,7 +41,7 @@ fetch_sample_res <- function(df, site_notation, dets, start_date, end_date, limi
 
   } else {
 
-    paste0("start_date=",start_date)
+    paste0("startDate=",start_date)
 
   }
 
@@ -51,7 +51,7 @@ fetch_sample_res <- function(df, site_notation, dets, start_date, end_date, limi
 
   } else {
 
-    paste0("end_date=",end_date)
+    paste0("endDate=",end_date)
 
   }
 
