@@ -87,7 +87,7 @@ fetch_sample_res <- function(df, site_notation, dets, start_date, end_date, limi
 
   dat <- data.frame()
 
-  if(is.character(site_notation) && is.null(df)){
+  if(is.null(df)){
 
     nn_queries <- list(c(site_notation,dets,start_date,end_date,limit))
 
@@ -96,7 +96,7 @@ fetch_sample_res <- function(df, site_notation, dets, start_date, end_date, limi
 
     dat <- rbind(dat,readr::read_csv(paste0(url,paste(nn_queries[[1]],collapse = "&"))))
 
-  } else if (is.null(site_notation) && is.null(df)==FALSE){
+  } else if (is.null(df)==FALSE){
 
     for(i in 1:length(df$notation)){
 
@@ -112,7 +112,7 @@ fetch_sample_res <- function(df, site_notation, dets, start_date, end_date, limi
   }
 
   else {
-    # nothing
+    # nothing leave for dev
   }
 
   dat <- dat[,-c(1:2)]
