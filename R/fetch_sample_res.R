@@ -13,6 +13,7 @@
 #'@param start_date a date for the start of the data in a YYYY-mm-dd format
 #'@param end_date a date for the end of the data in a YYYY-mm-dd format
 #'@param limit if you want to run the query quickly you can set a numeric limit
+#'(set to 1000 if not supplied)
 #'@return returns the output of the API query based on the user search
 #'@examples
 #'fetch_sample_res(site_notation = "AN-FBRO100F", dets = c("0085","0111"))
@@ -77,7 +78,7 @@ fetch_sample_res <- function(df, site_notation, dets, start_date, end_date, limi
 
   limit <- if(missing(limit)){
 
-    paste0("_limit=9999999")
+    paste0("_limit=1000")
 
   } else {
 
