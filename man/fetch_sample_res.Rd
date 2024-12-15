@@ -20,7 +20,8 @@ as above}
 
 \item{end_date}{a date for the end of the data in a YYYY-mm-dd format}
 
-\item{limit}{if you want to run the query quickly you can set a numeric limit}
+\item{limit}{if you want to run the query quickly you can set a numeric limit
+(set to 1000 if not supplied)}
 }
 \value{
 returns the output of the API query based on the user search
