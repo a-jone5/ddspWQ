@@ -1,7 +1,7 @@
 Package: ddspWQ
 Type: Package
 Title: Access to the defra Water Quality Archive
-Version: 0.1.0
+Version: 0.1.1
 Author: jones a
 Maintainer: jones <jone5.gith@gmail.com>
 Description: Access to the defra Water Quality Archive
